@@ -10,22 +10,21 @@ Kubernetes as a minimal. There are 4 main Challenges:
 ---
 ## Documentation Plan
 
-- [Technologies](#Technologies) 
-- [Gitlab-ci/cd](#gitlab-ci/cd)
+- [Technologies](#1) Technologies) 
+- [ci/cd](#gitlab-ci/cd)
 - [Installation](#installation)
 - [Link](#link)
 ---
-## 1) Technologies 
+## 1- Technologies  
 We will use 2 technologies. These technologies are Kubernetes and gitlab-ci/cd.
-GitLab CI has been around for a couple of years and it has become one of the most popular CI tools in the community. GitLab products have a great documentation and their feature development is so fast and we get new features so frequent and they are generally very useful.
-GitLab provides much more than just a code repository, such as a docker registry, error tracking, wiki, issue tracking, CI etc.
+Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation. It has a large, rapidly growing ecosystem. Kubernetes services, support, and tools are widely available.
+GitLab CI has been around for a couple of years and it has become one of the most popular CI tools in the community. GitLab products have a great documentation and their feature development is so fast and we get new features so frequent and they are generally very useful.GitLab provides much more than just a code repository, such as a docker registry, error tracking, wiki, issue tracking, CI etc.
 - PLAN
    1) Build stage  => Build image and push registry
    2) Test stage   => Deploy test kubernetes cluster and test code
    3) Deploy stage => Deploy kubernetes cluster
 
-## Gitlab-ci/cd
-##   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
+## 2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
 # 1 Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
 ```python
 #web-app python code
