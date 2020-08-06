@@ -1,5 +1,3 @@
-
----
 # Devops Challenge
 
 This challenge should demonstrate that you understand the world of containers and
@@ -17,7 +15,8 @@ Kubernetes as a minimal. There are 4 main Challenges:
 - [Installation](#installation)
 - [Link](#link)
 ---
-## Technologies 
+## Technologies asda
+>> Technologies
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
 PLAN
