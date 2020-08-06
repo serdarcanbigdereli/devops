@@ -19,12 +19,9 @@ Kubernetes as a minimal. There are 4 main Challenges:
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
 - PLAN
-   1) Build
-Build image and push registry
-   2) Test
-Deploy test kubernetes cluster and test code
-   3) Deploy
-Deploy kubernetes cluster
+   1) Build stage  => Build image and push registry
+   2) Test stage   => Deploy test kubernetes cluster and test code
+   3) Deploy stage => Deploy kubernetes cluster
 
 ## Gitlab-ci/cd
 ##   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
