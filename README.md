@@ -1,5 +1,14 @@
-#       Devops Challenge
-#   1)Research the technologies you plan to use
+---
+## Documentation Plan
+
+- [Technologies](#Technologies) 
+- [Gitlab-ci/cd](#gitlab-ci/cd)
+- [Installation](#installation)
+- [Link](#link)
+
+---
+### **Devops Challenge**
+##   1)Technologies 
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
 PLAN
@@ -9,9 +18,10 @@ Build image and push registry
 Deploy test kubernetes cluster and test code
 #     Deploy
 Deploy kubernetes cluster
+> If your `README` has a lot of info, section headers might be nice.
 
 
-#   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
+##   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
 # 1 Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
 ```python
 #web-app python code
