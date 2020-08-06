@@ -18,20 +18,13 @@ Kubernetes as a minimal. There are 4 main Challenges:
 ## 1) Technologies 
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
-PLAN
-
-
 - PLAN
    1) Build
-   2) Second nested list item
-
-#     Build
 Build image and push registry
-#     Test
+   2) Test
 Deploy test kubernetes cluster and test code
-#     Deploy
+   3) Deploy
 Deploy kubernetes cluster
-> If your `README` has a lot of info, section headers might be nice.
 
 ## Gitlab-ci/cd
 ##   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
@@ -53,6 +46,8 @@ if __name__ == '__main__':
 ```bash
 flask
 ```
+> If your `README` has a lot of info, section headers might be nice.
+
 #     3. Webapp Dockerfile
 ```Dockerfile
 # Web-app Dockerfile with secure
