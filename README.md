@@ -15,11 +15,16 @@ Kubernetes as a minimal. There are 4 main Challenges:
 - [Installation](#installation)
 - [Link](#link)
 ---
-## Technologies asda
->> Technologies
+## 1) Technologies 
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
 PLAN
+
+
+- PLAN
+   1) Build
+   2) Second nested list item
+
 #     Build
 Build image and push registry
 #     Test
