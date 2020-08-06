@@ -1,13 +1,21 @@
 
+---
+# Devops Challenge
+
+This challenge should demonstrate that you understand the world of containers and
+microservices. We want to build a simple but resilient Hello World app, deploy it to
+Kubernetes as a minimal. There are 4 main Challenges:
+- [x] writing a Docker container
+- [x] automating the build of the container
+- [x] defining the whole infrastructure as code
+- [x] Autoscale k8s cluster
+---
 ## Documentation Plan
 
 - [Technologies](#Technologies) 
 - [Gitlab-ci/cd](#gitlab-ci/cd)
 - [Installation](#installation)
 - [Link](#link)
----
-## Devops Challenge
----
 ---
 ## Technologies 
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
@@ -21,7 +29,7 @@ Deploy test kubernetes cluster and test code
 Deploy kubernetes cluster
 > If your `README` has a lot of info, section headers might be nice.
 
-
+## Gitlab-ci/cd
 ##   2) Continuous integration and continuous delivery with Kubernetes (Suggested Approach: 2 and 4)
 # 1 Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
 ```python
