@@ -1,14 +1,15 @@
----
+
 ## Documentation Plan
 
 - [Technologies](#Technologies) 
 - [Gitlab-ci/cd](#gitlab-ci/cd)
 - [Installation](#installation)
 - [Link](#link)
-
 ---
-### **Devops Challenge**
-##   1)Technologies 
+## Devops Challenge
+---
+---
+## Technologies 
 We will use 3 technologies. These technologies are Kubernetes, docker and gitlab-ci/cd.
 Gitlab-ci/cd was preferred because there were more possibilities.
 PLAN
