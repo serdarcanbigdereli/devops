@@ -272,11 +272,11 @@ gitlab-managed-apps   web        Deployment/web         1/10k             1     
 > Suggested Approach: 5
 
 1. centos k8s cluster install
-Send setup files to the machine where Kubernetes will be installed
+   Send setup files to the machine where Kubernetes will be installed
 ```bash
 sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```
-Kubernetes install 
+   Kubernetes install 
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/k8s-install.sh
 ```
@@ -292,4 +292,4 @@ sshpass -p ‘password’ ssh root@x.x.x.x sh /root/k8s-destroy.sh
 ```
 ## 4  Github link
 > Suggested Approach: 6
-- Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`fvcproductions.com`</a>
+- Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`Devops Challenge`</a>
