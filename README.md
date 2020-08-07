@@ -1,7 +1,7 @@
 ## Documentation Plan
 
 - [Technologies](#1-Technologies) 
-- [ci/cd](#2-CI/CD)
+- [CI/CD](#2-CI/CD)
 - [Installation](#installation)
 - [Link](#link)
 ---
