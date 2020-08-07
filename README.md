@@ -195,7 +195,7 @@ deploy_dev:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
 ```
-Finishing Build stage
+If the build stage is successful, the output looks like this
 
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/build.png">
 
@@ -275,7 +275,7 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
 
 ```
 
-Finishing Test stage
+If the test stage is successful, the output looks like this
 
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/test.png">
 
@@ -340,7 +340,7 @@ done
     fi
 ```
 
-Finishing Deploy stage
+If the deploy stage is successful, the output looks like this
 
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/deploy.png">
 
