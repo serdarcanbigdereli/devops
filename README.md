@@ -96,7 +96,11 @@ CMD [ "python", "./app.py" ]
 ```
 
 4. Web-app gitlab configuration => .gitlab-ci.yaml
-     
+
+
+Finishing Build stage
+<img align="center" width="1100" height="250" src="https://github.com/ufkunkaraman/devops/blob/master/images/ci-cd.png">
+
 ```yaml
 
 #gitlab-ci.yalm configuration
@@ -191,6 +195,10 @@ deploy_dev:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
 ```
+
+Finishing Build stage
+<img align="center" width="1100" height="250" src="https://github.com/ufkunkaraman/devops/blob/master/images/build.png">
+
 test.sh
 ```bash
 #test.sh
@@ -265,6 +273,10 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
     fi
 
 ```
+
+Finishing Test stage
+<img align="center" width="1100" height="250" src="https://github.com/ufkunkaraman/devops/blob/master/images/test.png">
+
 deploy.sh
 ```bash
 #input parameters
@@ -325,6 +337,9 @@ done
         timeout 1 watch kubectl get pods -o wide
     fi
 ```
+
+Finishing Deploy stage
+<img align="center" width="1100" height="200" src="https://github.com/ufkunkaraman/devops/blob/master/images/deploy.png">
 
 5. Web-app kubernetes yaml => web.yaml
 ```yaml
