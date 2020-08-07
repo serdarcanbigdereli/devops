@@ -219,10 +219,18 @@ spec:
   selector:
     app: web
 ```
+Let's apply Kubernetes web-app deployment
+```bash
+kubectl apply -f web.yaml
+```
+
+
 6. Web-app autoscale yaml=>hpa-web.yaml 
 
 minimun pod = 1
+
 maximum pod = 5
+
 autoscale with http get requested (10k)
 
 ```yaml
@@ -249,11 +257,11 @@ autoscale with http get requested (10k)
       name: web
 ...
 ```
-Kubernetes autoscale apply
+Let's apply Kubernetes auto-scaling
 ```bash
 kubectl apply -f hpa-web.yalm
 ```
-Kubernetes autoscale control
+Let's check Kubernetes auto-scaling
 ```bash
 kubectl get hpa -n gitlab-managed-apps  web
 
