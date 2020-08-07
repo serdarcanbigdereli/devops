@@ -632,7 +632,7 @@ kubectl top pods -n $namespace
 ```
 usage
 ```
-./metric.sh -n web 
+./metric.sh -n gitlab-managed-apps 
 
 NAMESPACE             NAME      CPU(cores)   MEMORY(bytes)   
 gitlab-managed-apps   web        13m          12Mi       
