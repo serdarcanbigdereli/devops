@@ -10,12 +10,12 @@ Kubernetes as a minimal. There are 4 main Challenges:
 ---
 ## Documentation Plan
 
-- [Technologies](#1- Technologies) 
+- [Technologies](#1-Technologies) 
 - [ci/cd](#gitlab-ci/cd)
 - [Installation](#installation)
 - [Link](#link)
 ---
-## 1- Technologies  
+## 1-Technologies  
 
 We will use 2 technologies. These technologies are Kubernetes and gitlab-ci/cd.
 
