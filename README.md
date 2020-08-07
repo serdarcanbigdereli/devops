@@ -31,8 +31,7 @@ GitLab CI has been around for a couple of years and it has become one of the mos
 > Suggested Approach: 2 and 4
 
 Continuous integration and continuous delivery with Kubernetes
-
-# 1 Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
+1. Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
 ```python
 #web-app python code
 from flask import Flask
@@ -45,14 +44,12 @@ def index():
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=11130)
 ```
-
-#     2. Webapp library =>requirements.txt (for install =>pip install -r requirements.txt) 
+2. Webapp library =>requirements.txt (for install =>pip install -r requirements.txt) 
 ```bash
 flask
 ```
 > If your `README` has a lot of info, section headers might be nice.
-
-#     3. Webapp Dockerfile
+3. Webapp Dockerfile
 ```Dockerfile
 # Web-app Dockerfile with secure
 FROM python:3-alpine
@@ -89,7 +86,7 @@ EXPOSE 11130
 CMD [ "python", "./app.py" ]
 ```
 
-#     4. Web-app gitlab configuration => .gitlab-ci.yaml
+4. Web-app gitlab configuration => .gitlab-ci.yaml
      
 ```.gitlab-ci
 
@@ -176,7 +173,7 @@ deploy_dev:
 ```
 
 
-     5. Web-app kubernetes yaml => web.yaml
+5. Web-app kubernetes yaml => web.yaml
 ```yaml
 # Web-app deployments
 apiVersion: apps/v1
@@ -222,7 +219,7 @@ spec:
   selector:
     app: web
 ```
-     6. Web-app autoscale yaml=>hpa-web.yaml 
+6. Web-app autoscale yaml=>hpa-web.yaml 
 Apply
 ```bash
 kubectl apply -f hpa-web.yalm
@@ -253,9 +250,11 @@ kubectl apply -f hpa-web.yalm
 ```
 ```bash
 kubectl get hpa -n gitlab-managed-apps  web
-```
+
 NAMESPACE             NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
 gitlab-managed-apps   web        Deployment/web         1/10k             1                     5                  1            10m
+```
+
 
 3 Kubernetes cluster
     1. centos k8s cluster install
