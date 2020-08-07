@@ -541,7 +541,7 @@ metric-install.sh
 kubectl apply -f /root/setup/metric.yaml
 ```
 
-3. gitlab configration helper
+3. Gitlab configration helper
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/gitlab-install-helper.sh
 ```
@@ -597,9 +597,45 @@ List k8s cluster resources using bash.
 
 ```bash
 sshpass -p ‘password’ ssh root@x.x.x.x sh /root/setup/metric.sh -n <namespaces>
+
 ```
+metric.sh 
+
+```bash
+#input parameter
+helpFunction()
+{
+   echo ""
+   echo "Usage: $0 -n namespace"
+   echo -e "\t-n Description of what is namespace"
+   exit 1 # Exit script after printing help
+}
+
+while getopts "n:" opt
+do
+   case "$opt" in
+      n ) namespace="$OPTARG" ;;
+      ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+   esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$namespace" ]  
+then
+   echo "Please write, $0 -n namespace ";
+   helpFunction
+fi
+
+kubectl top pods -n $namespace
+
+```
+usage
+```
+./metric.sh -n web 
 
 
+
+```
 
 
 ## 5-link
