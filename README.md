@@ -105,6 +105,7 @@ variables:
   tag: random
   label: app=web
   yaml: web.yaml
+  hpayaml: hpa-web.yaml
   namespace: gitlab-managed-apps
   port: 11130
   testclusterip: x.x.x.x
@@ -165,7 +166,7 @@ deploy_dev:
     - kubectl config set-context default --cluster=k8s --user=gitlab
     - kubectl config use-context default
     - chmod +x ./deploy.sh
-    - ./deploy.sh -y $yaml -l $label 
+    - ./deploy.sh -y $yaml -l $label -h $hpayaml 
   only:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
@@ -247,12 +248,13 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
 deploy.sh
 ```bash
 #input parameters
-while getopts "y:n:l:" opt
+while getopts "y:n:l:h:" opt
 do
    case "$opt" in
       y ) yaml="$OPTARG" ;;
       n ) namespace="$OPTARG" ;;
       l ) label="$OPTARG" ;;
+      h ) hpayaml ="$OPTARG" ;;
 
    esac
 done
@@ -298,6 +300,7 @@ done
     if [ "$status" == "Running" ]
     then
         echo "Status--> " $status
+	kubectl apply -f $hpayaml
     else
         timeout 1 watch kubectl get pods -o wide
     fi
