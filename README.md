@@ -3,7 +3,8 @@
 - [Technologies](#1-Technologies) 
 - [Ci/Cd](#2-CiCd)
 - [Kubernetes Process](#3-Kubernetes)
-- [Link](#4-link)
+- [Bonus](#4-Bonus)
+- [Link](#5-link)
 ---
 # Devops Challenge
 
@@ -14,6 +15,7 @@ Kubernetes as a minimal. There are 4 main Challenges:
 - [x] automating the build of the container
 - [x] defining the whole infrastructure as code
 - [x] Autoscale k8s cluster
+- [x] K8s cluster resources list
 ## 1-Technologies  
 >Suggested Approach: 1
 
