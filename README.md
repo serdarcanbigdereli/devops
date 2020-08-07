@@ -402,16 +402,17 @@ Let's check Kubernetes deployments
 ```bash
 kubectl get deployments -n gitlab-managed-apps  web
 
-NAMESPACE             NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-gitlab-managed-apps   web        Deployment/web         1/10k             1                     5                  1            10m
+NAMESPACE             NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+gitlab-managed-apps   web           1/1     1            1           10m
+
 ```
 
 Let's check Kubernetes auto-scaling
 ```bash
 kubectl get hpa -n gitlab-managed-apps  web
 
-NAMESPACE             NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-gitlab-managed-apps   web        Deployment/web         1/10k             1                     5                  1            10m
+NAMESPACE                NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+gitlab-managed-apps      web        Deployment/web             1/10k            1        5           1        10m
 ```
 
 
