@@ -220,17 +220,17 @@ spec:
     app: web
 ```
 6. Web-app autoscale yaml=>hpa-web.yaml 
-Apply
-```bash
-kubectl apply -f hpa-web.yalm
-```
+
+minimun pod = 1
+maximum pod = 5
+autoscale with http get requested (10k)
+
 ```yaml
 ...
   spec:
     maxReplicas: 5
     minReplicas: 1
     metrics:
-#autoscale with http get requested  
     - type: Object
       object:
         metric:
@@ -247,7 +247,13 @@ kubectl apply -f hpa-web.yalm
       apiVersion: apps/v1
       kind: Deployment
       name: web
+...
 ```
+Kubernetes autoscale apply
+```bash
+kubectl apply -f hpa-web.yalm
+```
+Kubernetes autoscale control
 ```bash
 kubectl get hpa -n gitlab-managed-apps  web
 
@@ -256,19 +262,22 @@ gitlab-managed-apps   web        Deployment/web         1/10k             1     
 ```
 
 
-3 Kubernetes cluster
-    1. centos k8s cluster install
+## 3 Kubernetes cluster
+
+1. centos k8s cluster install
 ```bash
 sshpass -p 'password' scp setup root@x.x.x.x:/root/
 sshpass -p 'password'  ssh root@x.x.x.x
 sh /root/k8s-install.sh
 ```
-    2. metric install 
+2. metric install 
+
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x
 sh /root/metric-install.sh
 ```
-    3. kuberenetes cluster destroy 
+3. kuberenetes cluster destroy 
+
 ```bash
 sshpass -p ‘password’ ssh root@x.x.x.x
 sh /root/k8s-destroy.sh
