@@ -43,8 +43,14 @@ app = Flask(__name__)
 def index():
     return "Hello Hepsiburada from Ufkun"
 
+@app.route('/user/<name>')
+def user(name):
+	return 'Hello Hepsiburada from {0}'.format(name)
+
+#Expose port 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=11130)
+
 ```
 2. Webapp library =>requirements.txt (for install =>pip install -r requirements.txt) 
 ```bash
