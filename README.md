@@ -87,7 +87,7 @@ CMD [ "python", "./app.py" ]
 
 4. Web-app gitlab configuration => .gitlab-ci.yaml
      
-```.gitlab-ci
+```yaml
 
 #gitlab-ci.yalm configuration
 image: docker:latest
