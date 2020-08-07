@@ -346,7 +346,7 @@ spec:
           requests:
             cpu: 50m
 ---
-#web loadbalancer
+#web service
 apiVersion: v1
 kind: Service
 metadata:
@@ -354,7 +354,7 @@ metadata:
   labels:
     app: web
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: "11130"
     port: 11130
