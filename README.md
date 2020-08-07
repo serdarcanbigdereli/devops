@@ -169,8 +169,7 @@ deploy_dev:
   only:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
-```
-   test.sh
+```test.sh
 ```bash
 #test.sh
 #input parameter 
@@ -244,8 +243,8 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
     fi
 
 ```
-	deploy.sh
-```
+deploy.sh
+```bash
 #!/bin/bash
 #input parameters
 while getopts "y:n:l:" opt
