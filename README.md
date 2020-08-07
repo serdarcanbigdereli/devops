@@ -292,5 +292,4 @@ sshpass -p ‘password’ ssh root@x.x.x.x sh /root/k8s-destroy.sh
 ```
 ## 4  Github link
 > Suggested Approach: 6
-Ufkunkaramna
-
+- Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`fvcproductions.com`</a>
