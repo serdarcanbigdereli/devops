@@ -622,7 +622,7 @@ sudo kubeadm  reset
 ```
 ## 4-Bonus
 
-List k8s cluster resources using bash.
+List k8s cluster resources using bash. (Note:metric-install.sh must be run)
 
 ```bash
 sshpass -p ‘password’ ssh root@x.x.x.x sh /root/setup/metric.sh -n <namespaces>
