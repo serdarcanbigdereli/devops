@@ -173,7 +173,7 @@ deploy_dev:
 test.sh
 ```bash
 #test.sh
-#input parameter 
+#input parameters
 while getopts "y:n:l:p:i:" opt
 do
    case "$opt" in
@@ -246,7 +246,6 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
 ```
 deploy.sh
 ```bash
-#!/bin/bash
 #input parameters
 while getopts "y:n:l:" opt
 do
