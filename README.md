@@ -412,16 +412,167 @@ sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/k8s-install.sh
 ```
-2. Metric install 
+k8s-install.sh
+```bash
+#input ip for Kubernetes cluster setup
+helpFunction()
+{
+   echo ""
+   echo "Usage: $0 -i ip -e ethernetname ($0 -i x.x.x.x -e eth0)"
+   echo -e "\t-i Description of what is ip"
+   exit 1 # Exit script after printing help
+}
 
+while getopts "i:" opt
+do
+   case "$opt" in
+      i ) ip="$OPTARG" ;;
+      ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+   esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$ip" ]  
+then
+   echo "Please write, $0 -i ip ";
+   helpFunction
+fi
+
+
+echo "docker install"
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+echo "Configure the docker-ce repo"
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+echo "Install docker-ce:"
+sudo yum install docker-ce -y
+echo "Add your user to the docker group with the following command."
+sudo usermod -aG docker $(whoami)
+echo "Set Docker to start automatically at boot time:"
+sudo systemctl enable docker.service
+echo "Finally, start the Docker service:"
+sudo systemctl start docker.service
+
+
+
+echo "k8s install !!!"
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+
+echo "centos install"
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+# Set SELinux in permissive mode (effectively disabling it)
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+sudo systemctl enable --now kubelet
+
+
+echo "service enable"
+systemctl daemon-reload
+systemctl enable docker
+swapoff -a
+systemctl enable kubelet.service
+
+
+
+
+
+#Docker best practise to Control and configure Docker with systemd. (Api)
+echo '{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}' > /etc/docker/daemon.json
+sed -i "s/-H fd:\/\//-H fd:\/\/ -H tcp:\/\/0.0.0.0:2375/g" /lib/systemd/system/docker.service
+systemctl daemon-reload
+systemctl restart docker
+
+
+#Kubadm cluster setup
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=$ip
+#kubernetes cluster setup
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#Flannel install
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml     
+          
+#Make both slave and master
+kubectl taint nodes --all node-role.kubernetes.io/master-
+
+```
+2. Metric install 
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/metric-install.sh
 ```
-3. Kuberenetes cluster destroy 
+
+metric-install.sh
+
+```bash
+#metrics install
+kubectl apply -f /root/setup/metric.yaml
+```
+
+3. 
+echo "gitlab configration helper"
+echo "kubernetes api"
+kubectl cluster-info | grep 'Kubernetes master' | awk '/http/ {print $NF}'
+echo "kubernetes CA certification"
+kubectl get secrets
+echo "Service Token Process"
+echo "kubectl get secret <secret name> -o jsonpath="{['data']['ca\.crt']}" | base64 --decode"
+echo "Service Token"
+echo """
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitlab-admin
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: gitlab-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: gitlab-admin
+    namespace: kube-system
+""" >/root/gitlab-admin-service-account.yaml
+kubectl apply -f gitlab-admin-service-account.yaml --username=admin --password=admin
+#Retrieve the token for the gitlab-admin service account:
+echo "authentication_token"
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab-admin | awk '{print $1}') |grep token:|awk '{print $2}'
+```
+4. Kuberenetes cluster destroy 
 
 ```bash
 sshpass -p ‘password’ ssh root@x.x.x.x sh /root/k8s-destroy.sh
 ```
+k8s-destroy.sh
+```bash
+#cluster delete
+sudo kubeadm  reset
+```
+
+
+
 ## 4-link
 > Suggested Approach: 6
 - Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`Devops Challenge`</a>
