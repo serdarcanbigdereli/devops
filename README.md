@@ -17,6 +17,7 @@ Kubernetes as a minimal. There are 4 main Challenges:
 - [x] Autoscale k8s cluster
 - [x] K8s cluster resources list
 ## 1-Technologies  
+<img align="rigth" width="100" height="100" src="https://github.com/ufkunkaraman/devops/blob/master/images/gitlab_ci_cd_kubernetes.jpg">
 >Suggested Approach: 1
 
 We will use 2 technologies. These technologies are Kubernetes and gitlab-ci/cd.
