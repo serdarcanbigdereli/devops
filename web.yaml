@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - image: ufkunkaraman/web
+        imagePullPolicy: IfNotPresent
+        name: web
+      hostname: web
+        resources:
+          requests:
+            cpu: 50m
+---
+
+#web  service
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    app: web
+spec:
+  type: NodePort
+  ports:
+  - name: "11130"
+    port: 11130
+    nodePort: 11130 # node port
+    protocol: TCP
+    targetPort: 11130
+  selector:
+    app: web
+

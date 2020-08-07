@@ -1,0 +1,85 @@
+apiVersion: v1
+items:
+- apiVersion: autoscaling/v2beta2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2020-08-05T23:01:16Z"
+    managedFields:
+    - apiVersion: autoscaling/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:maxReplicas: {}
+          f:minReplicas: {}
+          f:scaleTargetRef:
+            f:apiVersion: {}
+            f:kind: {}
+            f:name: {}
+          f:targetCPUUtilizationPercentage: {}
+      manager: kubectl
+      operation: Update
+      time: "2020-08-05T23:01:16Z"
+    - apiVersion: autoscaling/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:autoscaling.alpha.kubernetes.io/conditions: {}
+        f:status:
+          f:currentReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2020-08-05T23:21:53Z"
+    name: web
+    namespace: gitlab-managed-apps
+    resourceVersion: "39108"
+    selfLink: /apis/autoscaling/v2beta2/namespaces/gitlab-managed-apps/horizontalpodautoscalers/web
+    uid: e8657d27-0831-46ee-9a27-807b8e2b9698
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+    - type: Object
+      object:
+        metric:
+          name: requests-per-second
+          selector: {matchLabels: {verb: GET}}
+        describedObject:
+          apiVersion: networking.k8s.io/v1beta1
+          kind: Ingress
+          name: main-route
+        target:
+          type: Value
+          value: 10k
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: web
+  status:
+    conditions:
+    - lastTransitionTime: "2020-08-05T23:01:31Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2020-08-05T23:01:32Z"
+      message: 'the HPA was unable to compute the replica count: unable to get metrics
+        for resource cpu: failed to get pod resource metrics: the server could not
+        find the requested resource (get services http:heapster:)'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics: null
+    currentReplicas: 1
+    desiredReplicas: 0
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+

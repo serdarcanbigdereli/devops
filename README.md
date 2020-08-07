@@ -43,8 +43,14 @@ app = Flask(__name__)
 def index():
     return "Hello Hepsiburada from Ufkun"
 
+@app.route('/user/<name>')
+def user(name):
+	return 'Hello Hepsiburada from {0}'.format(name)
+
+#Expose port 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=11130)
+
 ```
 2. Webapp library =>requirements.txt (for install =>pip install -r requirements.txt) 
 ```bash
@@ -420,7 +426,9 @@ gitlab-managed-apps      web        Deployment/web             1/10k            
 > Suggested Approach: 5
 
 1. Centos k8s cluster install
+
    Send setup files to the machine where Kubernetes will be installed
+   
 ```bash
 sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```
@@ -642,3 +650,4 @@ gitlab-managed-apps   web        13m          12Mi
 
 ## 5-link
 - Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`Devops Challenge`</a>
+

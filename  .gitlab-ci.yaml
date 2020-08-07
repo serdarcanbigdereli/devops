@@ -1,0 +1,91 @@
+#gitlab-ci.yalm configuration
+image: docker:latest
+services:
+  - docker:dind
+# There are  3 stages in our gitlab-ci/cd configuration. 
+stages:
+  - build
+  - test
+  - deploy
+
+# There are some parameters need for automation.
+variables:
+# automatic imaging with tag
+  image: ufkunkaraman/web
+  tag: random
+# kubernetes yaml files 
+  yaml: web.yaml
+# autoscale yaml file
+  hpayaml: hpa-web.yaml
+# To login the docker hub 
+  user: ufkunkaraman
+  password: xxxx
+# To build  the dockerfile
+  DOCKER_HOST: tcp://x.x.x.x:2375
+# To control the deployment 
+  label: app=web
+  namespace: gitlab-managed-apps
+# To test the code
+  port: 11130
+  testclusterip: x.x.x.x
+# To access  the test kubernetes cluster
+  TESTTOKEN: xxxx
+  TESTCERT: xxxx
+  TESTSERVER: https://x.x.x.x:6443
+# To access the kubernetes cluster
+  SERVER: https://x.x.x.x:6443
+  TOKEN: xxxx
+  CERT: xxxx
+
+# At this stage, the image is built and the image is pushed registry
+build_dev:
+  stage: build
+  script:
+    - export COMMIT_TIME=$(date '+%d%m%Y')
+    - echo $COMMIT_TIME
+    - docker login -u $user -p $password
+    - docker build -t $image:$tag-$COMMIT_TIME .
+    - docker tag $image:$tag-$COMMIT_TIME $image:latest
+    - docker push $image:$tag-$COMMIT_TIME
+    - docker push $image:latest
+    - docker image rm $image:$tag-$COMMIT_TIME $image:latest
+  only:
+    - master
+
+ # At this stage, the image is deployed in the test cluster. Testing is done here.
+test_dev:
+  stage: test
+  image: dtzar/helm-kubectl
+  environment:
+    name: master  
+  script:
+# To access  the test kubernetes cluster
+    - kubectl config set-cluster k8s --server=$TESTSERVER
+    - kubectl config set clusters.k8s.certificate-authority-data $TESTCERT
+    - kubectl config set-credentials gitlab --token=$TESTTOKEN
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - chmod +x ./test.sh
+    - ./test.sh -y $yaml -l $label -p $port -i $testclusterip
+  only:
+    - master
+#NOTE: test.sh is a code written for cluster publishing and testing
+
+    # At this stage, the image is deployed in the cluster.
+deploy_dev:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  environment:
+    name: master
+  script:
+# To access  the kubernetes cluster
+    - kubectl config set-cluster k8s --server=$SERVER
+    - kubectl config set clusters.k8s.certificate-authority-data $CERT
+    - kubectl config set-credentials gitlab --token=$TOKEN
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - chmod +x ./deploy.sh
+    - ./deploy.sh -y $yaml -l $label -h $hpayaml 
+  only:
+    - master
+# NOTE: deploy.sh is a code written for cluster publishing
