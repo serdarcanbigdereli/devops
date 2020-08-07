@@ -528,8 +528,9 @@ kubectl apply -f /root/setup/metric.yaml
 
 3. gitlab configration helper
 ```bash
-sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/metric-install.sh
+sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/gitlab-install-helper.sh
 ```
+gitlab-install-helper.sh
 
 ```bash
 echo "gitlab configration helper"
