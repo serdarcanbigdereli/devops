@@ -426,7 +426,9 @@ gitlab-managed-apps      web        Deployment/web             1/10k            
 > Suggested Approach: 5
 
 1. Centos k8s cluster install
+
    Send setup files to the machine where Kubernetes will be installed
+   
 ```bash
 sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```
