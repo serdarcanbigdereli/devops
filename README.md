@@ -169,7 +169,8 @@ deploy_dev:
   only:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
-```test.sh
+```
+test.sh
 ```bash
 #test.sh
 #input parameter 
