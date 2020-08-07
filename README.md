@@ -19,7 +19,7 @@ Kubernetes as a minimal. There are 4 main Challenges:
 ## 1-Technologies  
 >Suggested Approach: 1
 
-<img align="rigth" width="500" height="500" src="https://github.com/ufkunkaraman/devops/blob/master/images/gitlab_ci_cd_kubernetes.jpg">
+<img align="center" width="500" height="250" src="https://github.com/ufkunkaraman/devops/blob/master/images/gitlab_ci_cd_kubernetes.jpg">
 
 We will use 2 technologies. These technologies are Kubernetes and gitlab-ci/cd.
 
