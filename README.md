@@ -271,7 +271,7 @@ gitlab-managed-apps   web        Deployment/web         1/10k             1     
 ## 3-Kubernetes
 > Suggested Approach: 5
 
-1. centos k8s cluster install
+1. Centos k8s cluster install
    Send setup files to the machine where Kubernetes will be installed
 ```bash
 sshpass -p 'password' scp setup root@x.x.x.x:/root/
@@ -280,12 +280,12 @@ sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/k8s-install.sh
 ```
-2. metric install 
+2. Metric install 
 
 ```bash
 sshpass -p 'password'  ssh root@x.x.x.x sh /root/metric-install.sh
 ```
-3. kuberenetes cluster destroy 
+3. Kuberenetes cluster destroy 
 
 ```bash
 sshpass -p ‘password’ ssh root@x.x.x.x sh /root/k8s-destroy.sh
