@@ -1,3 +1,10 @@
+## Documentation Plan
+
+- [Technologies](#1-Technologies) 
+- [ci/cd](#2-CI/CD)
+- [Installation](#installation)
+- [Link](#link)
+---
 # Devops Challenge
 
 This challenge should demonstrate that you understand the world of containers and
@@ -7,14 +14,6 @@ Kubernetes as a minimal. There are 4 main Challenges:
 - [x] automating the build of the container
 - [x] defining the whole infrastructure as code
 - [x] Autoscale k8s cluster
----
-## Documentation Plan
-
-- [Technologies](#1-Technologies) 
-- [ci/cd](#2-CI/CD)
-- [Installation](#installation)
-- [Link](#link)
----
 ## 1-Technologies  
 >Suggested Approach: 1
 
@@ -28,8 +27,10 @@ GitLab CI has been around for a couple of years and it has become one of the mos
    2) Test stage   => Deploy test kubernetes cluster and test code
    3) Deploy stage => Deploy kubernetes cluster
 
-## 2-CI/CD with kubernetes
+## 2-CI/CD
 > Suggested Approach: 2 and 4
+
+Continuous integration and continuous delivery with Kubernetes
 
 # 1 Web-app code => app.py(port=11130,htmltext="Hello Hepsiburada from Ufkun") 
 ```python
