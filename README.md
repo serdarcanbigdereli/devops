@@ -591,9 +591,17 @@ k8s-destroy.sh
 #cluster delete
 sudo kubeadm  reset
 ```
+## 4-Bonus
+
+List k8s cluster resources using bash.
+
+```bash
+sshpass -p ‘password’ ssh root@x.x.x.x sh /root/setup/metric.sh -n <namespaces>
+```
 
 
 
-## 4-link
+
+## 5-link
 > Suggested Approach: 6
 - Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`Devops Challenge`</a>
