@@ -101,20 +101,29 @@ stages:
 
 # There are some parameters need for automation.
 variables:
+# automatic imaging with tag
   image: ufkunkaraman/web
   tag: random
-  label: app=web
+# kubernetes yaml files 
   yaml: web.yaml
+# autoscale yaml file
   hpayaml: hpa-web.yaml
-  namespace: gitlab-managed-apps
-  port: 11130
-  testclusterip: x.x.x.x
+# To login the docker hub 
   user: ufkunkaraman
   password: xxxx
+# To build  the dockerfile
+  DOCKER_HOST: tcp://x.x.x.x:2375
+# To control the deployment 
+  label: app=web
+  namespace: gitlab-managed-apps
+# To test the code
+  port: 11130
+  testclusterip: x.x.x.x
+# To access  the test kubernetes cluster
   TESTTOKEN: xxxx
   TESTCERT: xxxx
   TESTSERVER: https://x.x.x.x:6443
-  DOCKER_HOST: tcp://x.x.x.x:2375
+# To access the kubernetes cluster
   SERVER: https://x.x.x.x:6443
   TOKEN: xxxx
   CERT: xxxx
@@ -141,7 +150,7 @@ test_dev:
   environment:
     name: master  
   script:
-
+# To access  the test kubernetes cluster
     - kubectl config set-cluster k8s --server=$TESTSERVER
     - kubectl config set clusters.k8s.certificate-authority-data $TESTCERT
     - kubectl config set-credentials gitlab --token=$TESTTOKEN
@@ -160,6 +169,7 @@ deploy_dev:
   environment:
     name: master
   script:
+# To access  the kubernetes cluster
     - kubectl config set-cluster k8s --server=$SERVER
     - kubectl config set clusters.k8s.certificate-authority-data $CERT
     - kubectl config set-credentials gitlab --token=$TOKEN
