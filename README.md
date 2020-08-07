@@ -634,7 +634,8 @@ usage
 ```
 ./metric.sh -n web 
 
-
+NAMESPACE             NAME      CPU(cores)   MEMORY(bytes)   
+gitlab-managed-apps   web        13m          12Mi       
 
 ```
 
