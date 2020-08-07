@@ -2,7 +2,7 @@
 
 - [Technologies](#1-Technologies) 
 - [Ci/Cd](#2-CiCd)
-- [Installation](#installation)
+- [Kubernetes Process](#3-Kubernetes)
 - [Link](#link)
 ---
 # Devops Challenge
@@ -48,7 +48,6 @@ if __name__ == '__main__':
 ```bash
 flask
 ```
-> If your `README` has a lot of info, section headers might be nice.
 3. Webapp Dockerfile
 ```Dockerfile
 # Web-app Dockerfile with secure
@@ -172,7 +171,6 @@ deploy_dev:
 # NOTE: deploy.sh is a code written for cluster publishing
 ```
 
-
 5. Web-app kubernetes yaml => web.yaml
 ```yaml
 # Web-app deployments
@@ -219,11 +217,6 @@ spec:
   selector:
     app: web
 ```
-Let's apply Kubernetes web-app deployment
-```bash
-kubectl apply -f web.yaml
-```
-
 
 6. Web-app autoscale yaml=>hpa-web.yaml 
 
@@ -257,10 +250,15 @@ autoscale with http get requested (10k)
       name: web
 ...
 ```
-Let's apply Kubernetes auto-scaling
+
+Let's check Kubernetes deployments
 ```bash
-kubectl apply -f hpa-web.yalm
+kubectl get deployments -n gitlab-managed-apps  web
+
+NAMESPACE             NAME         REFERENCE               TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+gitlab-managed-apps   web        Deployment/web         1/10k             1                     5                  1            10m
 ```
+
 Let's check Kubernetes auto-scaling
 ```bash
 kubectl get hpa -n gitlab-managed-apps  web
@@ -270,7 +268,7 @@ gitlab-managed-apps   web        Deployment/web         1/10k             1     
 ```
 
 
-## 3 Kubernetes cluster
+## 3-Kubernetes
 > Suggested Approach: 5
 
 1. centos k8s cluster install
