@@ -410,7 +410,7 @@ sshpass -p 'password' scp setup root@x.x.x.x:/root/
 ```
    Kubernetes install 
 ```bash
-sshpass -p 'password'  ssh root@x.x.x.x sh /root/k8s-install.sh
+sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/k8s-install.sh
 ```
 k8s-install.sh
 ```bash
@@ -516,7 +516,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 2. Metric install 
 ```bash
-sshpass -p 'password'  ssh root@x.x.x.x sh /root/metric-install.sh
+sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/metric-install.sh
 ```
 
 metric-install.sh
@@ -526,7 +526,12 @@ metric-install.sh
 kubectl apply -f /root/setup/metric.yaml
 ```
 
-3. 
+3. gitlab configration helper
+```bash
+sshpass -p 'password'  ssh root@x.x.x.x sh /root/setup/metric-install.sh
+```
+
+```bash
 echo "gitlab configration helper"
 echo "kubernetes api"
 kubectl cluster-info | grep 'Kubernetes master' | awk '/http/ {print $NF}'
@@ -563,7 +568,7 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 4. Kuberenetes cluster destroy 
 
 ```bash
-sshpass -p ‘password’ ssh root@x.x.x.x sh /root/k8s-destroy.sh
+sshpass -p ‘password’ ssh root@x.x.x.x sh /root/setup/k8s-destroy.sh
 ```
 k8s-destroy.sh
 ```bash
