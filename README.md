@@ -639,5 +639,4 @@ usage
 
 
 ## 5-link
-> Suggested Approach: 6
 - Github at <a href="https://github.com/ufkunkaraman/devops" target="_blank">`Devops Challenge`</a>
