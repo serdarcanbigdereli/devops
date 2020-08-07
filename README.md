@@ -271,6 +271,7 @@ gitlab-managed-apps   web        Deployment/web         1/10k             1     
 
 
 ## 3 Kubernetes cluster
+> Suggested Approach: 5
 
 1. centos k8s cluster install
 ```bash
@@ -290,6 +291,7 @@ sh /root/metric-install.sh
 sshpass -p ‘password’ ssh root@x.x.x.x
 sh /root/k8s-destroy.sh
 ```
-4  Github link
+## 4  Github link
+> Suggested Approach: 6
 Ufkunkaramna
 
