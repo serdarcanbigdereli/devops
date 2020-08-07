@@ -98,8 +98,6 @@ CMD [ "python", "./app.py" ]
 4. Web-app gitlab configuration => .gitlab-ci.yaml
 
 
-Finishing Build stage
-
 <img align="center" width="600" height="100" src="https://github.com/ufkunkaraman/devops/blob/master/images/ci-cd.png">
 
 
@@ -197,9 +195,10 @@ deploy_dev:
     - master
 # NOTE: deploy.sh is a code written for cluster publishing
 ```
-
 Finishing Build stage
+
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/build.png">
+
 
 test.sh
 ```bash
@@ -277,6 +276,7 @@ healthcheck=$(curl -Is $testclusterip:$port | head -n 1 | awk '{print $2}')
 ```
 
 Finishing Test stage
+
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/test.png">
 
 deploy.sh
@@ -341,6 +341,7 @@ done
 ```
 
 Finishing Deploy stage
+
 <img align="center" width="700" height="150" src="https://github.com/ufkunkaraman/devops/blob/master/images/deploy.png">
 
 5. Web-app kubernetes yaml => web.yaml
