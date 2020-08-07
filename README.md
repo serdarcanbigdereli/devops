@@ -1,7 +1,7 @@
 ## Documentation Plan
 
 - [Technologies](#1-Technologies) 
-- [Ci/Cd](#2-Ci/Cd)
+- [Ci/Cd](#2-CiCd)
 - [Installation](#installation)
 - [Link](#link)
 ---
@@ -27,7 +27,7 @@ GitLab CI has been around for a couple of years and it has become one of the mos
    2) Test stage   => Deploy test kubernetes cluster and test code
    3) Deploy stage => Deploy kubernetes cluster
 
-## 2-Ci/Cd
+## 2-CiCd
 > Suggested Approach: 2 and 4
 
 Continuous integration and continuous delivery with Kubernetes
