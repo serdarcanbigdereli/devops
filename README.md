@@ -365,7 +365,7 @@ spec:
     spec:
       containers:
       - image: ufkunkaraman/web
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: web
       hostname: web
         resources:
